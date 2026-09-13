@@ -1,6 +1,5 @@
 #include <avr/io.h>
 #include <util/delay.h>
-#include <stdint.h>
 
 // definição de macros para manipulação de bits
 #define set_bit(Y, bit_x) (Y |= (1 << bit_x))
