@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+avr-gcc -mmcu=atmega328p -DF_CPU=16000000UL -Os -o main.elf main.c
+avr-objcopy -O ihex -R .eeprom main.elf main.hex
+rm main.elf
