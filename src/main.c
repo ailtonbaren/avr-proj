@@ -8,19 +8,19 @@
 #define tst_bit(Y, bit_x) (Y & (1 << bit_x))
 
 // definição dos pinos
-#define MOEDA          PD0	// botão moeda
-#define PRODUTO_A      PD1	// botão produto A (R$2,00)
-#define PRODUTO_B      PD2	//
-#define TROCO          PD3	//
+#define MOEDA          PD0	// botão para inserir moeda
+#define PRODUTO_A      PD1	// botão Produto A (R$2,00)
+#define PRODUTO_B      PD2	// botão Produto B (R$3,00)
+#define TROCO          PD3	// botão para receber troco
 
-#define LED_1          PB0
-#define LED_2          PB1
-#define LED_3          PB2
-#define LED_4          PB3
+#define LED_1          PB0	// R$1,00
+#define LED_2          PB1	// R$2,00
+#define LED_3          PB2	// R$3,00
+#define LED_4          PB3	// R$4,00
 
-#define MOTOR_A        PC0
-#define MOTOR_B        PC1
-#define ATUADOR_TROCO  PC2
+#define MOTOR_A        PC0	// LED representando o motor da esteira do produto A
+#define MOTOR_B        PC1	// LED representando o motor da esteira do produto B
+#define ATUADOR_TROCO  PC2	// LED representando o atuador do troco
 
 // atualiza os LEDs de acordo com o saldo
 void atualizaLeds(uint8_t saldo) {
