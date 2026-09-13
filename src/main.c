@@ -2,10 +2,10 @@
 #include <util/delay.h>
 
 // definição de macros para manipulação de bits
-#define set_bit(Y, bit_x) (Y |= (1 << bit_x))
-#define clr_bit(Y, bit_x) (Y &= ~(1 << bit_x))
-#define tgl_bit(Y, bit_x) (Y ^= (1 << bit_x))
-#define tst_bit(Y, bit_x) (Y & (1 << bit_x))
+#define set_bit(Y, bit_x) (Y |= (1 << bit_x))	// define o bit como 1
+#define clr_bit(Y, bit_x) (Y &= ~(1 << bit_x))	// define o bit como 0
+#define tgl_bit(Y, bit_x) (Y ^= (1 << bit_x))	// inverte o estado do bit
+#define tst_bit(Y, bit_x) (Y & (1 << bit_x))	// verifica o estado do bit
 
 // definição dos pinos
 #define MOEDA          PD0	// botão para inserir moeda
