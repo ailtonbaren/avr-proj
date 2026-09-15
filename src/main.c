@@ -24,9 +24,8 @@
 
 // atualiza os LEDs de acordo com o saldo
 void atualizaLeds(uint8_t saldo) {
-    PORTB &= 0xF0; 			// apaga os quatro leds
+    PORTB &= 0xF0; 		    // 1111 0000
 
-// acende os LEDs de acordo com o saldo
     if (saldo == 1) {
         PORTB |= 0x01; 		// 0000 0001
     }
@@ -77,17 +76,16 @@ void devolveTroco(void) {
     clr_bit(PORTC, ATUADOR_TROCO);
 }
 
-
 int main(void) {
-    // configuração da PORTB: PB0 a PB3(saídas) e PB4 a PB7(entradas)
+    // configuração da PORTB: PB0 a PB3(saídas)
     DDRB = 0b00001111;
 
-    // configuração da PORTC: PC0 a PC2 (saídas)
+    // configuração da PORTC: PC0 a PC2 (saídas para motores e atuador)
     DDRC = 0b00000111;
 
 	// configuração da PORTD: PD0 a PD3 (entradas para os botões)
     DDRD = 0b00000000;
-	
+
     // ativação dos resistores de pull-up internos nos pinos PD0 a PD3
     PORTD = 0b00001111;
 
@@ -98,7 +96,7 @@ int main(void) {
     PORTC = 0b00000000;
 
     uint8_t saldo = 0;
-	
+
     while (1) {
         // verifica PD0
         if (!tst_bit(PIND, MOEDA)) {
@@ -110,14 +108,14 @@ int main(void) {
                 if (saldo < 4) {
                     // adiciona R$1,00 à máquina
                     saldo++;
-					
+
                     atualizaLeds(saldo);
                 }
                 // aguarda o botão ser solto
                 while (!tst_bit(PIND, MOEDA));
             }
         }
-		
+
 		// verifica PD1
         if (!tst_bit(PIND, PRODUTO_A)) {
             // debounce do botão
@@ -139,12 +137,12 @@ int main(void) {
                 while (!tst_bit(PIND, PRODUTO_A));
             }
         }
-		
+
 		// verifica PD2
         if (!tst_bit(PIND, PRODUTO_B)) {
             // debounce do botão
 			_delay_ms(50);
-			
+
             // confirma se o botão continua pressionado
             if (!tst_bit(PIND, PRODUTO_B)) {
                 if (saldo >= 3) {
@@ -186,6 +184,6 @@ int main(void) {
             }
         }
     }
-	
+
     return 0;
 }
